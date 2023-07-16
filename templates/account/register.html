@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Login Start -->
+<div>
+    <div class="container" style="text-align: -webkit-center;">
+        <div class="card" style="max-width: 400px;margin-top:40px;">
+            <h3 class="card-header text-center">ایجاد حساب کاربری</h3>
+            <div class="card-body">
+                <form class="form" action="{% url 'account:register' %}" method="post">
+                    {% csrf_token %}
+                    <div class="">
+
+                        <div class="col">
+                            <div class="col-md-12">
+                                {{ form.first_name }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form.last_name }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form.email }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form.phone_number }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form.password }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form.confirm_password }}
+                            </div>
+                            <div class="col-md-12 d-grid">
+                                <button class="btn btn-success">ثبت نام</button>
+                            </div>
+                            {{ form.email.errors }}
+                            {{ form.non_field_errors }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<p class="text-center mt-4">حساب کاربری دارید؟
+    <a href="{% url 'account:login' %}">ورود</a>
+</p>
+<br><br>
+<!-- Login End -->
+{% endblock %}

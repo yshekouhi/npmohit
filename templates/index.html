@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}صفحه اصلی{% endblock %}
+{% block style %}
+<style>
+    .img-wrapper {
+        max-height: 100%;
+        height: 65vw;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .carousel_img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    @media screen and (min-width:576px) {
+        .carousel-inner {
+            display: flex;
+        }
+
+        .carousel-item {
+            display: block;
+            margin-left: 0;
+            flex: 0 0 calc(100% / 5);
+        }
+
+        .img-wrapper {
+            height: 11vw;
+        }
+    }
+
+    .carousel-inner {
+        padding: 1em;
+    }
+
+    .card {
+        margin: 0 .5em;
+        border-radius: 0;
+        box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, .18);
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 6vh;
+        height: 6vh;
+        background-color: #e1e1e1;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: .5;
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        opacity: .8;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container px-4">
+
+    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+        <div class="col d-flex flex-column align-items-start gap-2">
+            <h2 class="fw-bold text-body-emphasis text-success">دانش و تجربه، کیفیت را مژده می‌دهد...!</h2>
+            <p class="text-body-secondary"> شرکت نیک پاد محیط با همت جمعی از متخصصان حوزه محیط زیست دانشگاه تربیت مدرس
+                در سال 1401 تاسیس شد.
+                حوزه‌های فعالیت اصلی این شرکت در حال حاضر متمرکز بر تولید کربن فعال با گریدها و اندازه ذرات متفاوت
+                از
+                پیش‌سازهای مختلف بخصوص از زایدات کشاورزی و همچنین محصولات مبتنی بر کربن فعال می‌باشد. علاوه بر این،
+                بخشی
+                از فعالیت شرکت نیز به تولید کیت‌های سنجش آلاینده‌های محیطی و کاتالیست‌های کاربردی در حذف آلاینده‌ها
+                از
+                محیط‌های آبی و گازی اختصاص دارد. خط مشی ما رفع نیازهای حوزه ‌محیط زیست، صنعت و پزشکی کشور به محصولات
+                با
+                کیفیت بین‌المللی است. تلاش ما در این شرکت تولید محصولات مبتنی بر دانش و پژوهش روز دنیا برای مشتریان
+                بوده
+                است.</p>
+        </div>
+
+        <div class="col">
+            <div class="row row-cols-1 row-cols-sm-1 g-4">
+                <img style="border-radius: 5em" src="{% static 'img/treatment.jpg' %}" width="100%" hieght="100%" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-white">
+
+    <div class="container px-4" id="hanging-icons">
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-4">
+            {% for item in category_service %}
+            <a class="text-decoration-none" href="{% url 'service:category_detail' item.slug  %}">
+            <div class="col d-flex align-items-start">
+                <div
+                    class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.75em" height="1.75em" fill="currentColor"
+                        class="bi bi-speedometer2" viewBox="0 0 16 16">
+                        <path
+                            d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z" />
+                        <path fill-rule="evenodd"
+                            d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z" />
+                    </svg>
+                </div>
+                <div class="d-grid">
+                    <p class="fs-3 text-body-emphasis">{{ item.title }}</p>
+                </div>
+            </div>
+        </a>
+            {% endfor %}            
+        </div>
+    </div>
+</div>
+
+
+<div id="carouselExample" class="carousel" dir="ltr">
+    <div class="carousel-inner">
+        {% for product in products %}
+        
+        <div class="carousel-item active">
+            <div class="card" dir="rtl">
+                <div class="img-wrapper">
+                    <img class="carousel_img" src="{{ product.image.url }}" alt="{{ product.title }}">
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">{{ product.title }}</h6>
+                    <p class="card-text">{{ product.price|intcomma:False }} <span class="text-danger px-3">تومان</span></p>
+                    <a href="{{ product.get_absolute_url }}" class="btn btn-primary">مشاهده</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+{% endblock %}
+
+{% block script %}
+{% comment %} <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script> {% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+crossorigin="anonymous"></script>
+{% comment %} <script>
+    const multiItemCarousel = document.querySelector('#carouselExample')
+    if (window.matchMedia("(min-width:576px)").matches) {
+        const carousel = new bootstrap.Carousel(multiItemCarousel, {
+            interval: false
+        })
+        var carouselWidth = $('.carousel-inner')[0].scrollWidth;
+        var cardWidth = $('.carousel-item').width();
+        var scrollPosition = 0;
+        $('.carousel-control-next').on('click', function () {
+            if (scrollPosition > 0) {
+                scrollPosition = scrollPosition - cardWidth;
+                $('.carousel-inner').animate({ scrollLeft: scrollPosition }, 600);
+            }
+        });
+        $('.carousel-control-prev').on('click', function () {
+            if (scrollPosition < (carouselWidth - (cardWidth * 4))) {
+                scrollPosition = scrollPosition + cardWidth;
+                $('.carousel-inner').animate({ scrollLeft: scrollPosition }, 600);
+            }
+        });
+    } else {
+        $(multiItemCarousel).addClass('slide');
+    }
+
+</script> {% endcomment %}
+<script>
+
+    const multiItemCarousel = document.querySelector('#carouselExample')
+    if (window.matchMedia("(min-width:576px)").matches) {
+        const carousel = new bootstrap.Carousel(multiItemCarousel, {
+            interval: false
+        })
+        var carouselWidth = document.querySelector('.carousel-inner')[0].scrollWidth;
+        var cardWidth = document.querySelector('.carousel-item').width();
+        var scrollPosition = 0;
+        document.querySelector('.carousel-control-next').on('click', function () {
+            if (scrollPosition > 0) {
+                scrollPosition = scrollPosition - cardWidth;
+                document.querySelector('.carousel-inner').animate({ scrollLeft: scrollPosition }, 600);
+            }
+        });
+        document.querySelector('.carousel-control-prev').on('click', function () {
+            if (scrollPosition < (carouselWidth - (cardWidth * 4))) {
+                scrollPosition = scrollPosition + cardWidth;
+                document.querySelector('.carousel-inner').animate({ scrollLeft: scrollPosition }, 600);
+            }
+        });
+    } else {
+        document.querySelector(multiItemCarousel).addClass('slide');
+    }
+
+</script>
+
+{% endblock %}

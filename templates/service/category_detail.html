@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block style %}
+
+<style>
+
+</style>
+
+{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+
+
+    <div class="row">
+        {% if object %}
+        <h2 class="text-danger  ">{{ object.title }}</h2>
+        <p> {{ object.description }} </p>
+        {% for item in object.items.all %}
+        <div class="col-xl-4 mb-4">
+            <a class="text-decoration-none" href="{{ item.get_absolute_url}}" role="button">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
+                                    style="width: 45px; height: 45px" class="rounded-circle" />
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">{{ item.title }}</p>
+                                    <p class="text-muted mb-0">{{ item.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="text-center m-4">
+            <p class="h3"> خدمات خالی است.</p>
+            <a href="{% url 'admin:login' %}">
+                <button class="btn btn-outline-success px-5 mt-5 rounded-pill"> ایجاد دسته‌بندی محصولات </button>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}
+{% block script %}{% endblock %}

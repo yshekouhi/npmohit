@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+{% load static %}
+{% load humanize %}
+
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row justify-content-center mb-3">
+        <div class="col-md-12 col-xl-10">
+          <div class="card shadow-0 border rounded-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                  <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                    <img src="{{ product.image.url }}"
+                      class="w-100" />
+                    <a href="#!">
+                      <div class="hover-overlay">
+                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-6">
+                  <h5>{{ product.title }}</h5>
+
+                  <p class="text-truncate mb-4 mb-md-0">
+                    {{ product.description }}
+                  </p>
+                  {% for item in product.specifications_set.all %}
+                  <p class="text-truncate mb-4 mb-md-0">
+                        <span class="badge bg-secondary">{{ item.title }}</span>
+                        <span>{{ item.description }}</span>
+                    </p>
+                    {% endfor %}
+                </div>
+                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+
+                  <span class="text-danger">{{ product.price|intcomma:False }} <span class="px-2">تومان</span></span>
+                  <div class="d-flex flex-column mt-4">
+                    {% if product.available %}
+                    <a href="{% url 'checkout:add_to_cart' product.id %}" class="btn btn-danger">افزودن به سبد خرید</a>
+                    {% else %}
+                    <a href="#" class="btn btn-danger btn-sm disabled">ناموجود</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+
+  {% endblock %}

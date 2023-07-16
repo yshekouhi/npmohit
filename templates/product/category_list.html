@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+  {% if object_list %}
+  <section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center mb-3">
+        <div class="col-md-12 col-xl-10">
+            {% for item in object_list %}
+            <a href="{{ item.get_absolute_url}}">
+          <div class="card shadow-0 border rounded-3 mb-2">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                  <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                    <img src="{{ item.image.url }}"
+                      class="w-100" />
+                    <a href="#!">
+                      <div class="hover-overlay">
+                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-6">
+                  <h5><span class="text-danger">دسته‌بندی: </span> {{ item.title }}</h5>
+
+                  <p class="text-truncate">
+                    محصولات:
+                  </p>
+                    {% for item in item.product_set.all %}
+                      <a class="btn btn-sm btn-success mb-1" href="{% url 'product:detail' item.slug %}">{{ item.title }}</a>
+                    {% endfor %}
+                </div>
+                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+
+                  {% comment %} <h6 class="text-success">ارسال رایگان</h6> {% endcomment %}
+                  <div class="d-flex flex-column mt-4">
+                    <a href="{% url 'product:category_detail' item.slug %}" class="btn btn-danger btn-sm">مشاهده همه محصولات گروه</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% else %}
+  <div class="text-center m-4">
+    <p class="h3">دسته‌بندی محصولات خالی است.</p>
+    <a href="{% url 'admin:login' %}">
+        <button class="btn btn-outline-success px-5 mt-5 rounded-pill">  ایجاد دسته‌بندی محصولات </button>
+    </a>
+</div>
+  {% endif %}
+
+
+
+<!-- Category Start-->
+
+<!-- Category End-->
+
+{% endblock %}

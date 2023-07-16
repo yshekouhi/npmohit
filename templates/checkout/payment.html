@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+
+{% if orders %}
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center mb-3">
+            <div class="col-md-12 col-xl-10">
+                {% for order in orders %}
+                <div class="card shadow-0 border rounded-3 mb-2">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-xl-6">
+                                <h5>{{ order }}</h5>
+
+                                <p class="text-truncate mb-4 mb-md-0">
+                                    {{ order.status }}
+                                </p>
+                                <p class="text-truncate mb-4 mb-md-0">
+                                    {{ order.state }}, {{ order.city }}, {{ order.shipping_address }}
+                                </p>
+                                {% for item in order.items.all %}
+
+                                <p class="text-truncate mb-4 mb-md-0">
+
+
+                                    <a href="" type="button"
+                                        class="btn btn-sm btn-outline-success position-relative px-5 ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-tags-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                            <path
+                                                d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043-7.457-7.457z" />
+                                        </svg> {{ item }}
+                                        <span
+                                            class="position-absolute top-50 start-100 translate-middle badge bg-success">
+                                            {{ item.quantity }}
+                                        </span>
+                                    </a>
+                                </p>
+
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                                <div class="d-flex flex-row align-items-center mb-1">
+                                    <h4 class="mb-1 me-1">{{ order.total_amount }}</h4>
+                                    <span class="text-danger"><s>$20.99</s></span>
+                                </div>
+                                <h6 class="text-success">ارسال رایگان</h6>
+                                <div class="d-flex flex-column mt-4">
+                                    <a href="" class="btn btn-primary btn-sm mb-2">مشاهده همه محصولات گروه</a>
+                                    <a class="btn btn-sm btn-danger m-1" href="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                        </svg>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<div class="text-center m-4">
+    <p class="h3">دسته‌بندی محصولات خالی است.</p>
+    <a href="{% url 'admin:login' %}">
+        <button class="btn btn-outline-success px-5 mt-5 rounded-pill"> ایجاد دسته‌بندی محصولات </button>
+    </a>
+</div>
+
+{% endif %}
+
+
+{% comment %} <div class="container">
+    <div class="cart p-5 m-4  bg-white" style="border-radius:10px">
+        {% for order in orders %}
+        <p>{{ order }}</p>
+        <p>{{ order.total_amount }}</p>
+        <p>{{ order.state }}, {{ order.city }}, {{ order.shipping_address }}, {{ order.zip_code }}</p>
+        {% for item in order.items.all %}
+        <span class="badge bg-success">{{ item }} [{{ item.quantity }}]</span>
+
+        {% endfor %}
+        <form action="" method="post">
+            <input class="btn btn-danger" type="submit" value="پرداخت">
+        </form>
+        {% endfor %}
+        <div class="cart-body">
+            {{ order_id }}
+            <h5 class="cart-title">پرداخت</h5>
+            <hr>
+            <form action="{% url 'checkout:payment'  %}" method="post">
+                {% csrf_token %}
+                {{ form.order_id }}
+                <input type="text" value="{{order_id}}">
+                {{ form.as_p }}
+                <input class="btn btn-danger" type="submit" value="ارسال">
+            </form>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+{% endblock %}

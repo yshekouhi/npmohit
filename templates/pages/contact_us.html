@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}تماس با ما {% endblock %}
+{% block style %}
+
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="d-grid mt-5 bg-white p-5" style="border-radius: 5px">
+        <h5> ارسال پیام </h5>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form.title }}
+                </div>
+                <div class="col-md-6">
+                    {{ form.full_name }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">{{ form.email }}</div>
+                <div class="col-md-6">{{ form.phone_number }}</div>
+            </div>
+            {{ form.description }}
+            <div class="d-grid">
+                <input class="btn btn-danger" type="submit" value="ارسال">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container mt-3">
+
+    <div class="card p-5" style="border-radius: 5px">
+        <div class="card-body">
+            <h5 class="card-title mb-3">تماس با ما</h5>
+            <hr>
+            <p class="card-text">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                    class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                </svg>
+                <span class="m-3"> تهران، بزرگراه جلال آل احمد، دانشگاه تربیت مدرس </span>
+            </p>
+
+            <p class="card-text">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                    class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg>
+                <span class="m-3">(۰۲۱-۸۲۸۸۴۸۶۵) - (۰۲۱-۸۲۸۸۴۸۰۲)</span>
+            </p>
+
+            <p class="card-text">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                    class="bi bi-phone-vibrate-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M4 4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4zm5 7a1 1 0 1 0-2 0 1 1 0 0 0 2 0zM1.807 4.734a.5.5 0 1 0-.884-.468A7.967 7.967 0 0 0 0 8c0 1.347.334 2.618.923 3.734a.5.5 0 1 0 .884-.468A6.967 6.967 0 0 1 1 8c0-1.18.292-2.292.807-3.266zm13.27-.468a.5.5 0 0 0-.884.468C14.708 5.708 15 6.819 15 8c0 1.18-.292 2.292-.807 3.266a.5.5 0 0 0 .884.468A7.967 7.967 0 0 0 16 8a7.967 7.967 0 0 0-.923-3.734zM3.34 6.182a.5.5 0 1 0-.93-.364A5.986 5.986 0 0 0 2 8c0 .769.145 1.505.41 2.182a.5.5 0 1 0 .93-.364A4.986 4.986 0 0 1 3 8c0-.642.12-1.255.34-1.818zm10.25-.364a.5.5 0 0 0-.93.364c.22.563.34 1.176.34 1.818 0 .642-.12 1.255-.34 1.818a.5.5 0 0 0 .93.364C13.856 9.505 14 8.769 14 8c0-.769-.145-1.505-.41-2.182z" />
+                </svg>
+                <span class="m-3">۰۹۹۱۱۲۸۷۸۰۵</span>
+            </p>
+
+            <p class="card-text">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                    class="bi bi-printer-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z" />
+                    <path
+                        d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+                </svg>
+                <span class="m-3">۰۲۱-۸۲۸۸۴۵۸۰</span>
+            </p>
+
+        </div>
+    </div>
+
+</div>
+<div class="container my-3">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">نقشه</h5>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.113682981191!2d51.38634607227996!3d35.723422559404185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00d4a3d7aa5f%3A0x6fbf9d6d46bde805!2sTarbiat%20Modares%20University!5e0!3m2!1sen!2s!4v1688282560691!5m2!1sen!2s"
+                width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

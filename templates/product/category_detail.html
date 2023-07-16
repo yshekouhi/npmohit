@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+{% if products %}
+<section>
+    <div class="container py-5">
+      <div class="row justify-content-center mb-3">
+        {% for product in products %}
+        <div class="col-md-12 col-xl-10 mb-2">
+          <div class="card shadow-0 border rounded-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                  <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                    <img src="{{ product.image.url }}"
+                      class="w-100" />
+                    <a href="{% url 'product:detail' product.slug %}">
+                      <div class="hover-overlay">
+                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-6">
+                  <h5>{{ product.title }}</h5>
+                  {% for item in product.specifications_set.all %}
+                  <p class="text-truncate mb-4 mb-md-0">
+                        <span class="badge bg-secondary">{{ item.title }}</span>
+                        <span>{{ item.description }}</span>
+                    </p>
+                    {% endfor %}
+                </div>
+                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+
+                  <span class="text-danger">{{ product.price|intcomma:False }} <span class="px-2">تومان</span></span>
+                  <div class="d-flex flex-column mt-4">
+                    {% if product.available %}
+                    <a href="{% url 'checkout:add_to_cart' product.id %}" class="btn btn-danger">افزودن به سبد خرید</a>
+                    {% else %}
+                    <a href="#" class="btn btn-danger btn-sm disabled">ناموجود</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+</section>
+{% endif %}
+
+
+<p class="products h4 p-3 text-center  mt-5" style="background-image: linear-gradient(rgb(210, 244, 234), rgb(243, 246, 255, 1));
+  "> 
+  {{ object.title }}
+</p>
+<div class="container mt-5">
+    {% if products %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in products %}
+        <div class="col">
+            <a class="nav-link" href="{% url 'product:detail' product.slug %}">
+                <div class="card h-100">
+                    <div class="card-header bg-transparent border-success">{{ product.title }}</div>
+
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body text-end">
+                        <h6 class="card-title">{{ product.price}} تومان</h6>
+                    </div>
+                    <div class="card-footer"> 
+
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}        
+    </div>
+    {% else %}
+    <div class="text-center m-4">
+        <p class="h3">در این دسته‌بندی محصولی تعریف نشده است.</p>
+        <a href="{% url 'admin:login' %}">
+            <button class="btn btn-outline-success px-5 mt-5 rounded-pill">  اضافه کردن محصول جدید </button>
+        </a>
+    </div>       
+    {% endif %}
+</div>
+
+
+{% endblock %}

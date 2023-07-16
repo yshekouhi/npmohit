@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="text-center m-4">
+    <p class="h3">صفحه‌ای با این آدرس موجود نیست. از صحت url اطمینان حاصل کنید.</p>
+    <a href="{% url 'admin:login' %}">
+        <button class="btn btn-outline-success px-5 mt-5 rounded-pill">  ایجاد دسته‌بندی محصولات </button>
+    </a>
+</div>
+
+{% endblock  %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if request.GET.command == "verification" %}
+<div class="container text-center mx-auto alert alert-info" role="alert"
+    style="max-width:1024px; margin-bottom: 400px;">
+    Thank you for registration. We send an email to your email address.
+    <span class="fst-italic">[{{ request.GET.email }}]</span>
+</div>
+{% else %}
+<!-- Login Start -->
+<div class="login">
+    <div class="container-fluid">
+        <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+            <h3 class="card-header  text-center">ورود به حساب کاربری</h3>
+            <div class="card-body">
+                <form action="{% url 'account:login' %}" method="post" style="width:100%; padding:20px">
+                    {% csrf_token %}
+                    <div class="register-form">
+                        <div class="col">
+                            <div class="col-md-12">
+                                <input class="form-control  my-2" type="text" placeholder="ایمیل" name="email">
+                            </div>
+                            <div class="col-md-12">
+                                <input class="form-control  my-2" type="password" placeholder="رمز عبور"
+                                    name="password">
+                            </div>
+
+                            <div class="col-md-12 d-grid">
+                                <button class="btn btn-success">ورود</button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" type="hidden" name="next"
+                        value="{% if request.GET.next %}{{  request.GET.next }}{% else %}{% endif %}">
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<p class="text-center mt-4">فراموشی رمز عبور؟
+    <a class="link-primary" href="{% url 'account:forgot_password' %}">بازیابی</a>
+</p>
+<p class="text-center mt-4">حساب کاربری ندارید؟
+    <a class="link-primary" href="{% url 'account:register' %}">ثبت نام</a>
+</p>
+{% endif %}
+<br><br>
+</div>
+</div>
+<!-- Login End -->
+
+{% endblock %}

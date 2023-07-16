@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}سفارش ساخت محصول{% endblock %}
+{% block style %}
+
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="d-grid m-5">
+        <h5 class="">ساخت محصول سفارشی  </h5>
+        <hr>
+        <p class="h6 lh-lg">
+            با توجه به اهمیت ظرفیت جذب کربن فعال در کاربردهای گوناگون، شرکت نیک پاد محیط سفارشات شما در جهت تهیه محصول
+            مورد نظر از پیش‌سازهای مختلف را امکان‌پذیر می‌سازد.
+            برای سفارش محصول می‌توانید از بخش زیر اقدام فرمایید. در بخش توضیحات پیش‌سازهای مدنظر و شرایط مورد نیاز جهت
+            آماده‌سازی آن را وارد نمایید و چنانچه مشخصات خاصی از محصول مانند عکس یا فایل مقاله‌ای که بر اساس آن
+            می‌خواهید کربن فعال شما سنتز شود، موجود است، ارسال نمایید تا پس از بررسی اولیه در کوتاه‌ترین زمان ممکن به
+            شما پاسخ داده شود. پاسخ درخواست خود را از قسمت در انتهای همین صفحه می‌توانید مشاهده کنید.
+        </p>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.title }}
+            {{ form.description }}
+            <lable>ارسال فایل یا تصویر</label>
+                {{ form.files }}
+                <div class="d-grid">
+                    <input class="btn btn-danger" type="submit" value="ارسال درخواست">
+                </div>
+        </form>
+
+        {% if custom_products %}
+        <h5 class="mt-5 mx-2">درخواست‌های شما</h5>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            {% for item in custom_products %}
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-{{item.id}}" aria-expanded="false" aria-controls="flush-{{item.id}}">
+                  {{ item.title }}
+                </button>
+              </h2>
+              <div id="flush-{{item.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">{{ item.description }}</div>
+                <div class="accordion-body"><h5>پاسخ</h5>{{ item.reply }}</div>
+              </div>
+            </div>
+            {% endfor %}
+        </div> 
+        {% endif %} 
+    </div>
+</div>
+
+
+{% endblock %}

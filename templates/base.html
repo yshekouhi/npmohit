@@ -1,0 +1,53 @@
+{% load static %}
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>نیک پاد محیط</title>
+    {% block style %}{% endblock %}
+<style>
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+</style>
+</head>
+
+<body>
+
+
+  
+      
+
+
+
+    <!-- Top bar Start -->
+    {% include 'includes/navbar.html' %}
+    <!-- Top bar End -->
+    {% include 'includes/message.html' %}
+
+    <!--Main content-->
+    {% block content %}
+    {% endblock %}
+    <!--Main content End-->
+
+    <!--Footer-->
+    {% include 'includes/footer.html' %}
+
+    <!--Footer End-->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+
+
+    {% block script %}{% endblock %}
+</body>
+
+</html>

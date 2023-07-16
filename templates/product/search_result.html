@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+        <p class="products h4 p-3 text-center  mt-5" style="background-image: linear-gradient(rgb(210, 244, 234), rgb(243, 246, 255, 1));
+        ">نتایج جستجوی عبارت : {{q}}</p>
+        
+        <div class="container">
+        {% if results %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          {% for item in results %}
+          <div class="col">
+            <a class="nav-link" href="{{ item.get_absolute_url}}">
+              <div class="card">
+                <img src="{{ item.image.url }}" class="card-img-top" alt="...">
+      
+                <div class="card-footer text-center">
+                  <small class="h5 text-body-secondary">{{ item.title }}</small>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+            <!-- Pagination Start -->
+            <div class="col-md-12">
+                <nav aria-label="Page navigation example">
+                    {% if results.has_other_pages %}
+                    <ul class="pagination justify-content-center">
+                        {% if results.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ results.previous_page_number }}" tabindex="-1">Previous</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>                            
+                        {% endif %}
+                        {% for x in results.paginator.page_range %}
+                        {% if results.number == x %}
+                        <li class="page-item active disabled"><a class="page-link" href="?page={{ x }}">{{ x }}</a></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ x }}">{{ x }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                        {% if results.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ results.next_page_number }}">Next</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">Next</a>
+                        </li>                            
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                </nav>
+            </div>
+            <!-- Pagination Start -->        
+        {% else %}
+        <div class="text-center m-4">
+          <p class="h3">نتیجه‌ای یافت نشد!</p>
+      </div>
+        {% endif %}
+      </div>
+      
+
+
+<!-- Product List End -->
+
+{% endblock %}

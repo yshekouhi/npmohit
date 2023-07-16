@@ -1,0 +1,9 @@
+{% autoescape off %}
+<h1>Hi {{ user.first_name }} {{ user.last_name }} </h1>
+    <ul>
+        <li>test </li>
+    </ul>
+<h5>Please click on the link to activate your email</h5>
+https://{{ domain }}{% url 'account:activate_subscription' token=token %}
+
+{% endautoescape %}
